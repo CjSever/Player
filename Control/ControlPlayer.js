@@ -199,13 +199,14 @@ function color_fill_toddler_active(){
     }
 }
 
-// Discription control audio player for event mouse
+// Discription control audio player
 function get_value_current_volume(){
 
     get_value_atrib_volume();
     check__iconVolume();
     VolValue.innerText = volume.value;
     curent_color_toddler_status = false;
+    event_onmousemove_volume;
 
     volume.onpointermove = function get_value_current_volumeMove(){
         event_onmousemove_volume();
@@ -219,29 +220,8 @@ function get_value_current_volume(){
 
 }
 
-// Discription control audio player for sensor event
-// function get_value_current_volume_sensor(){
-
-//     get_value_atrib_volume();
-//     check__iconVolume();
-//     VolValue.innerText = volume.value;
-//     curent_color_toddler_status = false;
-
-//     volume.onpointermove = function get_value_current_volumeMove_sensor(){
-//         event_onmousemove_volume();
-//         color_fill_toddler_active();
-//     }
-
-//     volume.onpointerup = function get_value_current_volumeUp_sensor(){
-//         event_onmouseup_volume();
-//         curent_color_toddler_status = true;
-//     }
-
-// }
-
 function control__audio_volume(){
-    
-    // get_value_current_volume_sensor();
+
     get_value_current_volume();
 
 }
