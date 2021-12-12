@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Player Heart</title>
+        <link rel="stylesheet" href="Style/StyleAudioPlayer.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body class="main-page">
+    <!-- Здесь находитсья блок с аудио плеером -->
+    <div name="AudioPlayer">
+        <!-- script CheckBrowser -->
+        <script type="text/javascript" src="Control/CheckBrowser.js"></script>
+        <div class="container__player_audio" id='mainAudioPlayerBlock'>
+
+            <div class="col__player col__player_logo" id="fx_spinner">
+
+                <!-- Логотип радиостанции, в случае необходимости смены логтипа, необходимо поменять путь/ссулку к файлу -->
+                <!-- Светлая обложка--><!-- http://amgradio.ru/img/logoruwavewhite.jpg -->
+                <!-- Темная обложка--><!-- http://amgradio.ru/img/logoruwavewhite.jpg -->
+                <img src="http://amgradio.ru/img/logoruwavewhite.jpg" alt="Здесь должен быть логотип радиостанции. Должен быть, но его нет." class="logo__img">
+
+            </div>
+
+            <div class="col__player col__player_audioControl">
+                <div class="container__controlAudio">
+
+                        <div class="controlAudio__items controlAudio__items_button-play">
+                                            <!-- Кнопка Play/Pause -->
+                            <button onclick="control__audio_play()" class="player__btn player__btn_play" id="a_control">
+                                <!-- Элементы кнопки Play/Pause -->
+                                <div class="drawBox__wrapper">
+                                    <div class="player__drawBox">
+                                        <div class="player__drawBox_play" id="a_play"></div>
+                                        <div class="player__drawBox_stop" id="a_stop">
+                                            <div class="line_stop"  id="stopLineL"></div>
+                                            <div class="line_stop"  id="stopLineR"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </button>
+                        </div>
+
+                        <div class="controlAudio__wrapper">
+                            <div class="controlAudio__items controlAudio__items_toddler">
+
+                                <!-- Слайдер громкости -->
+                                <input onpointerdown ="control__audio_volume()" type="range" min="0" max="100" step="1" value="100" class="player__audio_toddler" id="a__toddler_volume">
+
+                                <div class="box_invisible">
+
+                                    <!-- ссылка для вставки потокового возпроизведения музыки, находиться в атрибуте src-->
+                                    <audio src="https://rp.amgradio.ru/RuWave48" preload="none" type="audio/aac" id="audio"></audio>
+                                    <!-- https://rp.amgradio.ru/RuWave48 -->
+                                </div>
+
+                            </div>
+
+                            <div class="controlAudio__items controlAudio__items_icon-volume">
+
+                                <!-- Кнопка Mute/показатели уровней громкости -->
+                                <div class="box__show box__show_ValueVol">
+                                    <button onclick="onClickMute()" class="btn__mute" id="btn__mute">
+                                        <img src="img/vol__level_3.png" alt="vol__level_3.png" class="icon__vol icon__vol_level3" id="icon__vol_level3">
+                                        <img src="img/vol__level_2.png" alt="vol__level_2.png" class="icon__vol icon__vol_level2" id="icon__vol_level2">
+                                        <img src="img/vol__level_1.png" alt="vol__level_1.png" class="icon__vol icon__vol_level1" id="icon__vol_level1">
+                                        <img src="img/vol__level_mute.png" alt="vol__level_mute.png" class="icon__vol icon__vol_levelMute" id="icon__vol_levelMute">
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <div class="controlAudio__items controlAudio__items_show-value-vol">
+
+                                <div class="box__show box__show_ValueVol">
+                                    <!-- Здесь, динамически храниться текущее значение громкости слайдера-->
+                                    <h1 class="VolValue" id="VolValue"></h1>
+                                </div> 
+
+                            </div>
+                        </div>
+                </div>
+            </div>
+            
+            <!-- Script main functional audio-layer -->
+            <script type="text/javascript" src="Control/ControlPlayer.js"></script>
+
+        </div>
+        <!-- script ReplaceBlockAudioPlayer -->
+        <script type="text/javascript" src="Control/ReplaceBlockAudioPlayer.js"></script>
+    </div>
+
+    </body>
+</html>
