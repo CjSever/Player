@@ -207,6 +207,7 @@ function get_value_current_volume(){
     VolValue.innerText = volume.value;
     curent_color_toddler_status = false;
     event_onmousemove_volume;
+    color_fill_toddler_active();
 
     volume.onpointermove = function get_value_current_volumeMove(){
         event_onmousemove_volume();
@@ -216,6 +217,7 @@ function get_value_current_volume(){
     volume.onpointerup = function get_value_current_volumeUp(){
         event_onmouseup_volume();
         curent_color_toddler_status = true;
+        color_fill_toddler_active();
     }
 
 }
