@@ -148,7 +148,7 @@ function onClickMute(){
     }
 }
 
-function event_onmousemove_volume(){
+function event_move_volume(){
     getValueAtrib_volume.currentValue_volume = volume.value;
     VolValue.innerText = volume.value;
     audio.volume = getValueAtrib_volume.currentValue_volume/100;
@@ -198,32 +198,35 @@ function color_fill_toddler_active(){
         volume.style.background = toddler_color_no_active;
     }
 }
-
 // Discription control audio player
+
+function volume_event_range_rmove(){
+    volume.onpointermove = volume.ontouchmove = function get_value_current_volumeMove(){
+        event_move_volume();
+        curent_color_toddler_status = true;
+        color_fill_toddler_active();
+    }
+}
+
+function volume_event_range_up(){
+    volume.onpointerup = function get_value_current_volumeUp(){
+        event_move_volume();
+        curent_color_toddler_status = false;
+        color_fill_toddler_active();
+    }
+}
+
 function get_value_current_volume(){
 
     get_value_atrib_volume();
     check__iconVolume();
     VolValue.innerText = volume.value;
     curent_color_toddler_status = false;
-    event_onmousemove_volume;
-    color_fill_toddler_active();
 
-    volume.onpointermove = function get_value_current_volumeMove(){
-        event_onmousemove_volume();
-        color_fill_toddler_active();
-    }
-
-    volume.onpointerup = function get_value_current_volumeUp(){
-        event_onmouseup_volume();
-        curent_color_toddler_status = true;
-        color_fill_toddler_active();
-    }
-
+    volume_event_range_rmove();
+    volume_event_range_up();
 }
 
 function control__audio_volume(){
-
     get_value_current_volume();
-
 }
