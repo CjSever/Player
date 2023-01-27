@@ -60,25 +60,49 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
-      addResourcesToCache([
-        './',
-        './index.html',
-        './Style/StyleAudioPlayer.css',
-        './app.js',
-
-        './Control',
-        './Control/CheckBrowser.js',
-        './Control/ControlPlayer.js',
-        './Control/ReplaceBlockAudioPlayer.js',
-        
-        './img',
-        './img/vol_level_1.png',
-        './img/vol_level_2.png',
-        './img/vol_level_3.png',
-        './img/vol_level_mute.png'
-      ])
+      caches.open('v1').then((cache) => {
+        return cache.addAll([
+            './',
+            './index.html',
+            './Style/StyleAudioPlayer.css',
+            './app.js',
+    
+            './Control',
+            './Control/CheckBrowser.js',
+            './Control/ControlPlayer.js',
+            './Control/ReplaceBlockAudioPlayer.js',
+            
+            './img',
+            './img/vol_level_1.png',
+            './img/vol_level_2.png',
+            './img/vol_level_3.png',
+            './img/vol_level_mute.png'
+        ]);
+      })
     );
   });
+
+// self.addEventListener('install', (event) => {
+//     event.waitUntil(
+//       addResourcesToCache([
+//         './',
+//         './index.html',
+//         './Style/StyleAudioPlayer.css',
+//         './app.js',
+
+//         './Control',
+//         './Control/CheckBrowser.js',
+//         './Control/ControlPlayer.js',
+//         './Control/ReplaceBlockAudioPlayer.js',
+        
+//         './img',
+//         './img/vol_level_1.png',
+//         './img/vol_level_2.png',
+//         './img/vol_level_3.png',
+//         './img/vol_level_mute.png'
+//       ])
+//     );
+//   });
 
 self.addEventListener('fetch', (event) => {
     console.log('Происходит запрос на сервер');
