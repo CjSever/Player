@@ -54,32 +54,29 @@ const addResourcesToCache = async (resources) => {
   };
 
 self.addEventListener('activate', (event) => {
+    event.waitUntil(enableNavigationPreload());
     console.log('Активирован');
 });
 
-
 self.addEventListener('install', (event) => {
-    console.log('Установлен');
     event.waitUntil(
-      caches.open('v1').then((cache) => {
-        return cache.addAll([
-            './',
-            './index.html',
-            './Style/StyleAudioPlayer.css',
-            './app.js',
+      addResourcesToCache([
+        './',
+        './index.html',
+        './Style/StyleAudioPlayer.css',
+        './app.js',
 
-            './Control',
-            './Control/CheckBrowser.js',
-            './Control/ControlPlayer.js',
-            './Control/ReplaceBlockAudioPlayer.js',
-            
-            './img',
-            './img/vol_level_1.png',
-            './img/vol_level_2.png',
-            './img/vol_level_3.png',
-            './img/vol_level_mute.png'
-        ]);
-      })
+        './Control',
+        './Control/CheckBrowser.js',
+        './Control/ControlPlayer.js',
+        './Control/ReplaceBlockAudioPlayer.js',
+        
+        './img',
+        './img/vol_level_1.png',
+        './img/vol_level_2.png',
+        './img/vol_level_3.png',
+        './img/vol_level_mute.png'
+      ])
     );
   });
 
