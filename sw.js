@@ -6,39 +6,45 @@
 //     'example.js'
 // ];
 
-// self.addEventListener('install', (event) => {
-//     console.log('Установлен');
-// });
+const addResourcesToCache = async (resources) => {
+    const cache = await caches.open('v1');
+    await cache.addAll(resources);
+  };
+  
+  const putInCache = async (request, response) => {
+    const cache = await caches.open('v1');
+    await cache.put(request, response);
+  };
 
 self.addEventListener('activate', (event) => {
     console.log('Активирован');
 });
 
+
 self.addEventListener('install', (event) => {
-    
     console.log('Установлен');
-
     event.waitUntil(
-      addResourcesToCache([
-        './',
-        './index.html',
-        './Style/StyleAudioPlayer.css',
-        './app.js',
+      caches.open('v1').then((cache) => {
+        return cache.addAll([
+            './',
+            './index.html',
+            './Style/StyleAudioPlayer.css',
+            './app.js',
 
-        './Control',
-        './Control/CheckBrowser.js',
-        './Control/ControlPlayer.js',
-        './Control/ReplaceBlockAudioPlayer.js',
-        
-        './img',
-        './img/vol_level_1.png',
-        './img/vol_level_2.png',
-        './img/vol_level_3.png',
-        './img/vol_level_mute.png'
-      ])
+            './Control',
+            './Control/CheckBrowser.js',
+            './Control/ControlPlayer.js',
+            './Control/ReplaceBlockAudioPlayer.js',
+            
+            './img',
+            './img/vol_level_1.png',
+            './img/vol_level_2.png',
+            './img/vol_level_3.png',
+            './img/vol_level_mute.png'
+        ]);
+      })
     );
   });
-
 
 self.addEventListener('fetch', (event) => {
     console.log('Происходит запрос на сервер');
