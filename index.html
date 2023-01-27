@@ -7,6 +7,19 @@
     </head>
     <body class="main-page">
 
+    <script>
+        if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw-test/sw.js', {scope: './sw-test/'})
+        .then((reg) => {
+            // регистрация сработала
+            console.log('Registration succeeded. Scope is ' + reg.scope);
+        }).catch((error) => {
+            // регистрация прошла неудачно
+            console.log('Registration failed with ' + error);
+        });
+        }
+    </script>
+
     <!-- Здесь находитсья блок с аудио плеером -->
     <div name="AudioPlayer">
         <!-- script CheckBrowser -->
